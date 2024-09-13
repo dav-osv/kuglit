@@ -1,0 +1,337 @@
+<div class="row">
+  <div class="row">
+    <div class="col-12">
+      <h5>Usuario que recibira notificación de primera respuesta.</h5>
+      <h6>
+        Los usuarios que se agreguen al listado, les llegará notifición por
+        correo electrónico.
+      </h6>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <small>
+          <label for="selecUsuarios1"
+            >Seleccionar usuarios existentes en el sistema:</label
+          >
+        </small>
+        <select
+          class="form-select"
+          id="selecUsuarios1"
+          aria-label="Default select example"
+        >
+          <option selected>Seleccione un usuario</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-6 text-center align-content-center mt-3 mb-3">
+        <p>
+          <small
+            >Llegará una notificación de preimera respuesta SLA al correo
+            electronico agregado.</small
+          >
+        </p>
+        <!-- Button trigger modal -->
+        <button class="btn btn-outline-primary" (click)="open(content)">
+          Agregar correo
+        </button>
+        <!-- <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#modalNewEmail"
+        >
+          Agregar correo
+        </button> -->
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Seleccionados</th>
+              <!-- <th>Bandera</th> -->
+              <!-- <th>Nombre</th> -->
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let pais of paises; index as i"> -->
+            <tr>
+              <td>1</td>
+              <!-- <td> -->
+              <!-- <img [src]="pais.flag" class="small-flag" /> -->
+              <!-- okok
+              </td> -->
+              <td>okokok</td>
+              <td>okokokok</td>
+              <!-- <td>
+                <a [routerLink]="['/pais', pais.alpha2Code]" r>ver...</a>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12 col-md-6">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <!-- <th>Bandera</th> -->
+              <!-- <th>Nombre</th> -->
+              <th>Correo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let pais of paises; index as i"> -->
+            <tr>
+              <td>1</td>
+              <!-- <td> -->
+              <!-- <img [src]="pais.flag" class="small-flag" /> -->
+              <!-- okok
+              </td> -->
+              <td>okokok</td>
+              <td>okokokok</td>
+              <!-- <td>
+                <a [routerLink]="['/pais', pais.alpha2Code]" r>ver...</a>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h5>
+        <small> Usuarios que no calificarán solicitudes. </small>
+      </h5>
+      <p>
+        <small
+          >Los usuarios que se agreguen al listado, son usuario que no les
+          pedirá que califiquen para poder seguir levantando solicitudes e
+          incidentes.</small
+        >
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <small>
+          <label for="selecUsuarios2"
+            >Seleccionar usuarios existentes en el sistema:</label
+          >
+        </small>
+        <select
+          class="form-select"
+          id="selecUsuarios2"
+          aria-label="Default select example"
+        >
+          <option selected>Seleccione un usuario</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-6">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Seleccionados</th>
+              <!-- <th>Bandera</th> -->
+              <!-- <th>Nombre</th> -->
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let pais of paises; index as i"> -->
+            <tr>
+              <td>1</td>
+              <!-- <td> -->
+              <!-- <img [src]="pais.flag" class="small-flag" /> -->
+              <!-- okok
+              </td> -->
+              <td>okokok</td>
+              <td>okokokok</td>
+              <!-- <td>
+                <a [routerLink]="['/pais', pais.alpha2Code]" r>ver...</a>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h5>
+        <small> Privacidad de usuarios. </small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Mostrar el correo en detalle del perfil de los usuarios.</label
+        >
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <h5>
+        <small> Especialistas de cambio y problemas. </small>
+      </h5>
+      <p>
+        <small>
+          En el módulo de Cambios y Problemas mostrar en los Especialistas
+          'Todos los usuarios' o 'Agentes y Administradores'.
+        </small>
+      </p>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Mostrar todos los usuarios.</label
+        >
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h5>
+        <small> Seguimientos agregador por el sistema.</small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Mostrar seguimientos agregados por el sistema.</label
+        >
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <h5>
+        <small>
+          Pedir justificación de cambio de estatus de solicitud/incidentes.
+        </small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Pedir justificación de cambio de estatus.</label
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- MODAL AGREGAR CORREO -->
+
+<ng-template
+  #content
+  let-c="close"
+  let-d="dismiss"
+  class="modal-dialog-centered"
+>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modalNewEmailLabel">
+      Agregar correo electrónico
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+  </div>
+  <div class="modal-body">
+    <label for="newName">Nombre:</label>
+    <input class="form-control" type="text" id="newName" />
+    <label for="newMail">Correo electrónico:</label>
+    <input class="form-control" type="email" id="newMail" />
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="d('Cross click')"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="c('Save click')"
+    >
+      Agregar
+    </button>
+  </div>
+</ng-template>
+
+<!-- <div
+  class="modal fade"
+  id="modalNewEmail"
+  tabindex="-1"
+  aria-labelledby="modalNewEmailLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalNewEmailLabel">
+          Agregar correo electrónico
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="newName">Nombre:</label>
+        <input class="form-control" type="text" id="newName" />
+        <label for="newMail">Correo electrónico:</label>
+        <input class="form-control" type="email" id="newMail" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- FIN MODAL AGREGAR CORREO -->

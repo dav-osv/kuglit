@@ -1,0 +1,75 @@
+
+    <div class="row">
+        <div class="col-md-6">
+                        <h5 class="mt-2">Contactos</h5>
+         </div>
+         <br>
+         <div class="col-md-6 text-right">
+             <button pButton type="button" (click)="openModalnewContact()"  label="+ Agregar contacto" class="p-button-sm" ></button>
+         </div>
+    </div>
+     
+    <p-table [value]="contacts" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <div id="filtros" class="row align-items-start">
+                    <tr>
+                        <td>
+                            <div>
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input type="text" pInputText [(ngModel)]="busqueda"  (keyup)="showSearchResults()"  />
+                                </span>
+                            </div>
+                        </td>
+                      
+                        <td>
+                            <div class="col">
+                              
+                                <button pButton type="button" (click)="limpiarFiltro()" class="p-button-sm">Limpiar Filtro</button>
+                            </div>
+                            <div class="col">
+                                <br>
+                            </div>
+
+                        </td>
+                    </tr>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Puesto </th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contact>
+            <tr>
+                <td> </td>
+                <td>{{contact.nombre}}</td>
+                <td>{{contact.puesto}}</td>
+                <td> {{contact.correo}}</td>
+                <td>{{contact.telefono}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                        (click)="openModalEditContact(contact)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="openModalDeleteContact(contact)"></button>
+                </td>
+            </tr>
+            
+        </ng-template>
+    </p-table>
+     
+
+    <p-paginator [rows]="10" [totalRecords]="100" (onPageChange)="onChangePage($event)"></p-paginator>
+     
+
+
+
+
+

@@ -1,0 +1,156 @@
+
+<br>
+<div class="form-row mt-3">
+
+    <div class="col-md-2">
+      <label class="fontLabel" >Pregunta:</label>
+    </div>
+    <div class="col-md-10 text-left">
+        <p-multiSelect  
+              [options]="options" 
+              (onChange) = "onChangeQuestion($event)"
+              defaultLabel="Selecciona pregunta" 
+              [style]="{'width':'80%','heigth': '40%'}"
+              optionLabel="type" 
+              optionValue="id" 
+              [selectionLimit]="1"
+        >
+      </p-multiSelect>
+    </div>
+  </div>
+
+  <br>
+  <div  *ngIf="this.selectOption == 1">
+
+    <form [formGroup]="validationService" (ngSubmit)="addQuestion()">
+
+        <div class="row mt-1">
+           <div class="col md 12" style="background: #d4f3ec;"> <label>Texto </label></div>
+        </div>
+    
+
+        <div class="row mt-2">
+               <div class="col-md-12">
+                   <textarea 
+                          id="float-input" 
+                          rows="4" 
+                          [style]="{'width':'80%'}"
+                          pInputTextarea  
+                          [(ngModel)]="newQuestion.pregunta"
+                          formControlName="texto"
+                    >
+                  </textarea>
+               </div>
+        </div>
+        
+       <div class="row">
+          <div class="col-md-12">
+               <button pButton label="Guardar" type="submit"  (click)="addQuestion()" iconPos="right" class="p-button-sm"></button>
+          </div>
+       </div>
+    </form>
+  </div>
+
+  <div  *ngIf="this.selectOption == 2">
+
+    <form [formGroup]="validationService" (ngSubmit)="addQuestion()">
+       <div class="row mt-1">
+           <div class="col md 12" style="background: #d4f3ec;"> <label> Pregunta Si/No </label></div>
+           
+           <div>
+
+              <label>Pregunta:</label><br>
+              <input 
+                 class="form-control"
+                   pInputText 
+                    [(ngModel)]="newQuestion.pregunta" 
+                   formControlName="nombre" 
+                   class="inputTextTwo"
+               >
+           </div>
+           
+           <div class="row">
+                <div class="col-md-12">
+                    <p-radioButton
+                          type="radio"
+                          name="si_no" 
+                          value="true"
+                          [(ngModel)]="newQuestion.pregunta"
+                          formControlName="si_no"
+                  >
+                  </p-radioButton>
+    
+                    <label class="form-check-label  ml-2"> Si</label>
+                </div>
+           </div>
+
+           <div class="row">
+            <div class="col-md-12">
+              <p-radioButton
+                    type="radio"
+                    name="si_no" 
+                    value="true"
+                    [(ngModel)]="newQuestion.pregunta"
+                    formControlName="si_no"
+               >
+              </p-radioButton>
+                <label class="form-check-label  ml-2">No </label>
+            </div>
+          </div>
+       </div>
+    </form>
+  </div>
+
+  <div  *ngIf="this.selectOption == 3">
+    <div class="row mt-1">
+       <div class="col md 12" style="background: #d4f3ec;"> <label> Opción Multiple </label>
+      
+        <div>
+
+          <label>Pregunta:</label><br>
+          <input 
+             class="form-control"
+               pInputText 
+                [(ngModel)]="newQuestion.pregunta" 
+               formControlName="nombre" 
+               class="inputTextTwo"
+           >
+
+           Posibles respuestas: 
+                Agregar otra respuesta
+
+       </div>
+      </div>
+   </div>
+  </div>
+
+  <div  *ngIf="this.selectOption == 4">
+    <div class="row">
+      <div class="col md 12">
+         <div class="col md 12" style="background: #d4f3ec;"> <label> Campo Numerico</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div  *ngIf="this.selectOption == 5">
+    <div class="row">
+      <div class="col md 12">
+        <div class="col md 12" style="background: #d4f3ec;"> <label> Fecha </label></div>
+        <div>
+
+          <label>Pregunta:</label><br>
+          <input 
+             class="form-control"
+               pInputText 
+                [(ngModel)]="newQuestion.pregunta" 
+               formControlName="nombre" 
+               class="inputTextTwo"
+           >
+        </div>
+
+      </div>
+    </div>
+ </div>
+
+
+

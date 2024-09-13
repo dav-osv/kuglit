@@ -1,0 +1,36 @@
+
+ 
+<div  class="row">
+  <div class="col-md-12 text-right mt-2">
+    <button pButton type="button" (click)="openModalAdd()"  label="+ Agregar seccion" class="p-button-sm" ></button>
+  </div>
+</div>
+
+<div  *ngIf="submittedSections">
+        <app-seccion [sections]="sections"
+                     (onOpenModalEditSection)="openModalEditSection($event)"
+                     (onOpenModalDeleteSection)="openModalDeleteSection($event)"
+         >
+
+        </app-seccion>
+</div>
+
+
+
+<p-dialog [(visible)]="seccionDialogAdd" [style]="{width: '500px'}" header="Sección" [modal]="true" styleClass="p-fluid">
+          <app-nueva-seccion (onAddSection)="addSection($event)"
+                             (onClosedModalAdd) = "closeModalNewSection()"
+           > 
+          </app-nueva-seccion>
+</p-dialog>
+
+
+<div *ngIf="submittedEdit">
+           <app-editar-seccion
+                                [editSection]="editSection"  
+                                (onUpdateSection)="updateSection($event)"
+                                (onClosedModalEdit) = "closeModalEditSection()"
+           ></app-editar-seccion>
+</div>
+
+

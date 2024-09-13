@@ -1,0 +1,35 @@
+<app-listado-subcategorias
+
+   [subcategories] ="subcategories"
+   (onOpenModalnewSubcategory)="openModalnewSubcategory()"
+   (onOpenModalEditSubcategory)="openModalEditSubcategory($event)"
+   (onOpenModalDeleteSubcategory)="deleteSubcategory($event)"
+   
+
+>
+</app-listado-subcategorias>
+
+
+<p-dialog [(visible)]="subcategoryDialogAdd" [style]="{width: '500px'}" header="Subcategoría" [modal]="true" styleClass="p-fluid">
+        
+    <app-nueva-subcategoria
+            (onCloseModalnewSubcategory)="closeModalnewSubcategory()"
+            (onAddSubcategory)="addSubcategory($event)"
+     >
+    </app-nueva-subcategoria>
+ </p-dialog>
+
+
+
+<p-dialog [(visible)]="subcategoryDialogEdit" [style]="{width: '500px'}" header="Subcategoría" [modal]="true" styleClass="p-fluid">
+      
+   <app-editar-subcategorias
+      [editSubcategory] = "editSubcategory"
+      (onCloseModalEditSubcategory)="closeModalEditSubcategory()"
+      (onUpdateSubcategory)="updateSubcategory($event)"
+   >
+
+   </app-editar-subcategorias>
+
+</p-dialog>
+

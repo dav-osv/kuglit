@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-6">
+                    <h5 class="mt-2">Editar Servicio</h5>
+     </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-2">
+         <p-panelMenu [model]="items"></p-panelMenu>
+    </div> 
+  
+
+    <div class="col-md-10">
+  
+         <div *ngIf="optionMenu == 1">
+                <app-datos-generales-edit  [editService] ="editService" (onUpdateService)="updateService($event)"> </app-datos-generales-edit>     
+         </div> 
+
+           <div *ngIf="optionMenu == 2">
+                <app-slas-edit [editService]="editService" (onUpdateService)="updateService($event)"></app-slas-edit>     
+          </div>
+
+           <div *ngIf="optionMenu == 3">
+                 <app-proveedor-edit  [editService] ="editService" (onUpdateService)="updateService($event)"> </app-proveedor-edit>     
+           </div>
+
+           <div *ngIf="optionMenu == 4">
+                 <app-usuarios-edit  [editService] ="editService" (onUpdateService)="updateService($event)"> </app-usuarios-edit>     
+           </div>
+      
+
+         <div *ngIf="optionMenu == 5">
+                  <app-categorias  [editService] ="editService"  (onUpdateService)="updateService($event)" (onTemporaryService)="temporaryService($event)"  type="editService" ></app-categorias>
+         </div>  
+
+          <div *ngIf="optionMenu == 6"> 
+                 <app-contacto  [editService] ="editService" (onUpdateService)="updateService($event)"    (onTemporaryService)="temporaryService($event)"  type="editService"></app-contacto>
+          </div>  
+    </div>
+  </div>  

@@ -1,0 +1,28 @@
+@import "src/sass/variables.scss";
+
+hr {
+  width: 95%;
+  height: 0;
+  border: medium none;
+  border-top: 1px dashed white !important;
+  margin: 10px;
+}
+
+h5 {
+  // border-top: solid 3px $terciaryTwo-colorV01;
+  // border-bottom: solid 3px $terciaryTwo-colorV01;
+  color: $terciaryTwo-colorV01;
+  padding: 10px;
+}
+
+ul {
+  li {
+    a {
+      cursor: pointer;
+    }
+  }
+}
+
+.animacion {
+  transition: 0.5s;
+}

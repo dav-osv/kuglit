@@ -1,0 +1,101 @@
+
+  <form [formGroup]="validationService" (ngSubmit)="updateCategory()"> 
+   <br>
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label class="">Nombre de la categoría</label>
+        <input type="text"
+               pInputText
+               [style]="{'width':'100%'}"
+               placeholder="Nombre de la categoría"
+               [(ngModel)]="editCategory.nombre"
+               formControlName="nombre"
+               [class.is-invalid]="invalidCategoria" 
+         >
+         <small *ngIf="invalidCategoria" class="text-danger"><br>El campo nombre de la categoría es requerido</small>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label style="font-weight: 450;">Grupo de soporte</label>
+        <p-multiSelect   
+                     [options]="grupos"   
+                     [style]="{'width':'100%'}"
+                     (onClick)="onChangeGrupo()"  
+                     [(ngModel)]="editCategory.grupo" 
+                     formControlName="grupo" 
+                     defaultLabel="Selecciona un grupo" 
+                     optionLabel="nombre" 
+                     optionValue="id" 
+                     [selectionLimit]="1"
+                     >
+       </p-multiSelect> 
+     </div>
+  </div>
+
+  <br>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label class="ml-2" style="font-weight: 450;">Estatus.</label>
+           <p-inputSwitch  formControlName="estatus" 
+                           [(ngModel)]="editCategory.estatus"
+
+                      
+           ></p-inputSwitch>
+   </div>
+
+    <div class="form-group col-md-6">
+      <div class="form-check">
+      <input class="form-check-input" 
+             type="checkbox" 
+             id="gridCheck"
+             formControlName="politicaAcceso"
+             [(ngModel)]="editCategory.politica"
+             
+        >
+      <label class="form-check-label" for="gridCheck">
+           Requiere politica de acceso a seguridad
+      </label>
+    </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+     <label for="inputAddress">Agentes a los que se les asignara la categoría de bugs</label>
+
+     <p-multiSelect    
+                             
+                       [options]="agentes"    
+                       [style]="{'width': '100%'}"
+                       [(ngModel)]="editCategory.idsAgentes" 
+                       formControlName="agentes" 
+                       defaultLabel="Seleccione un grupo de agentes" 
+                       optionLabel="nombre" 
+                       optionValue="id" 
+                     
+       >
+      </p-multiSelect>
+
+  </div>
+
+  <div class="form-group">
+       <label for="inputAddress">Descripción</label>
+          <textarea 
+                    [style]="{'width': '100%'}"
+                    formControlName="descripcion"
+                    pInputTextarea
+                    [(ngModel)]="editCategory.descripcion" 
+           >
+         </textarea>
+   </div>
+
+
+  
+  <div class="separator"></div>
+    
+     <div class="text-center">
+            <div class="text-center mt-2">
+                <button pButton label="Cancelar" type="button"  (click)="cancel()" iconPos="right" class="p-button-sm"></button>
+                <button pButton label="Guardar"  iconPos="right"  type="submit" class="p-button-sm ml-2"></button>
+            </div>
+     </div>
+</form> 

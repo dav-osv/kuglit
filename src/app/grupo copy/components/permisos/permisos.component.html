@@ -1,0 +1,209 @@
+<div class="row">
+  <div class="row">
+    <div class="col-12">
+      <h5>Barda</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Activar barda pública.</label
+        >
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Activar barda para el grupo.</label
+        >
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>¿Quienes pueden publicar en la barda?</h6>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="allCanPost"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Todos pueden publicar.</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!allCanPost">
+    <div class="row">
+      <div class="col-12">
+        <h6>Publicaciones por ubicación.</h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <angular2-multiselect
+          [data]="dropdownListRegion"
+          [(ngModel)]="selectedRegion"
+          [settings]="settingsRegion"
+          (onSelect)="onItemSelect($event)"
+          (onDeSelect)="OnItemDeSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelectAll)="onDeSelectAll($event)"
+        ></angular2-multiselect>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <angular2-multiselect
+          [data]="dropdownListLocalidad"
+          [(ngModel)]="selectedLocalidad"
+          [settings]="settingsLocalidad"
+          (onSelect)="onItemSelect($event)"
+          (onDeSelect)="OnItemDeSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelectAll)="onDeSelectAll($event)"
+        ></angular2-multiselect>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <angular2-multiselect
+          [data]="dropdownListLocalidad"
+          [(ngModel)]="selectedLocalidad"
+          [settings]="settingsLocalidad"
+          (onSelect)="onItemSelect($event)"
+          (onDeSelect)="OnItemDeSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelectAll)="onDeSelectAll($event)"
+        ></angular2-multiselect>
+      </div>
+      <div class="col-12 col-md-6">
+        <h6>Usuarios publicadores.</h6>
+        <angular2-multiselect
+          [data]="dropdownListLocalidad"
+          [(ngModel)]="selectedLocalidad"
+          [settings]="settingsLocalidad"
+          (onSelect)="onItemSelect($event)"
+          (onDeSelect)="OnItemDeSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelectAll)="onDeSelectAll($event)"
+        ></angular2-multiselect>
+      </div>
+    </div>
+
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h5>
+        <small>Directorio de usuarios</small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="activChat"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Activar chat</label
+        >
+      </div>
+      <div class="row" *ngIf="activChat">
+        <div class="col-12">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckDefault"
+              [(ngModel)]="activChat"
+              >Todos</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckDefault"
+              [(ngModel)]="activChat"
+              >Usuarios -Agentes</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckDefault"
+              [(ngModel)]="activChat"
+              >Agentes-Agentes</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <h5>
+        <small>Chat</small>
+      </h5>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault1"
+        />
+        <label class="form-check-label" for="flexRadioDefault1"> Todos </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault1"
+        />
+        <label class="form-check-label" for="flexRadioDefault1">
+          Agentes
+        </label>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" style="margin-top: 30px">
+        Guardar cambios
+      </button>
+      <mat-slide-toggle>Slide me!</mat-slide-toggle>
+    </div>
+  </div>
+</div>
+|

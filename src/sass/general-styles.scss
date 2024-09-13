@@ -1,0 +1,55 @@
+
+
+.important{
+    color:#dc3545;
+}
+
+.separator{
+     border-width: 2px 0px 0px 0px; border-style: dotted;
+}
+
+.buttonCancel{
+   width: 20%;
+}
+
+.buttonNext{
+    width: 20%;
+}
+
+
+
+// /*Tamaño Label formularios general*/
+label:not(.form-check-label):not(.custom-file-label) {
+        font-weight: 100;
+}
+
+.inputText{
+    height: 50%;
+    width: 100%;
+}
+
+.inputTextTwo{
+    height: 45%;
+    width: 80%;
+}
+
+
+
+
+
+.inputSwitch{
+    height: 75%;
+    width:  70%;
+}
+
+
+// // .fontLabel{
+// //     font-family: "Myriad Pro";
+// //     font-weight: 100;
+// // }
+
+.titleMain{
+    color: #57AE94;
+}
+
+

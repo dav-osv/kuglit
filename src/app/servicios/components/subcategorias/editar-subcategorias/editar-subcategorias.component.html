@@ -1,0 +1,73 @@
+
+<form [formGroup]="validationService" (ngSubmit)="updateSubcategory()">
+
+    
+    <div class="form-row">
+      <div class="form-group col-md-9">
+        <label class="fontLabel" >Nombre de la subcategoría <label style="color:#dc3545;">*</label></label>
+  
+          <input type="text"
+                 pInputText 
+                 [(ngModel)]="editSubcategory.nombre" 
+                 formControlName="nombre"
+                 class="inputText"
+                 [class.is-invalid]="invalidSubcategoria" 
+  
+            >
+         <small *ngIf="invalidSubcategoria" class="text-danger"><br>El nombre de la subcategoría es obligatorio</small>
+      </div>
+  
+      <div class="form-group col-md-3">
+         <label class="fontLabel">Estatus</label><br>
+        <p-inputSwitch  
+                         formControlName="estatus" 
+                        [(ngModel)]="editSubcategory.estatus"
+                        [style]="{'heigth': '80%'}" 
+         >
+        </p-inputSwitch> 
+       </div>
+    </div>
+  
+     
+  
+    <div class="form-group">
+      <label class="fontLabel">Agentes a los que se les asignara la categoría de bugs</label>
+  
+         <p-multiSelect    
+                              
+                        [options]="agentes"    
+                        [(ngModel)]="editSubcategory.idsAgentes" 
+                        formControlName="agentes" 
+                        defaultLabel="Seleccione un grupo de agentes" 
+                        optionLabel="nombre" 
+                        optionValue="id"  
+                        [style]="{'heigth': '40%'}"    
+        >
+         </p-multiSelect>
+   </div>
+  
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label class="fontLabel">Descripción</label>
+          <textarea 
+                  [style]="{'width': '100%'}"
+                  formControlName="descripcion"
+                  pInputTextarea
+                  [(ngModel)]="editSubcategory.descripcion" 
+         >
+         </textarea>
+  
+      </div>
+    </div>
+  
+  
+       <div class="separator"></div>
+  
+     
+        <div class="text-center mt-2">
+           <button pButton label="Cancelar" type="button"  (click)="cancel()" iconPos="right" class="p-button-sm buttonCancel"></button>
+           <button pButton label="Guardar"  iconPos="right"  type="submit" class="p-button-sm buttonNext  ml-2"></button>
+         </div>
+  
+  
+    </form>

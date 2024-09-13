@@ -1,0 +1,64 @@
+ 
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #394263 ;">
+    <!-- Brand Logo -->
+    <div>
+        <a href="/dashboard" class="brand-link "  style="background-color: #262c43">
+           <img [src]= "'assets/images/header/k.png'">
+           <img  style="width: 40%;" [src]="'assets/images/header/klugit.png'">
+        </a>
+    </div>
+   
+
+    <!-- Sidebar -->
+    <div>
+      
+      <!-- Sidebar Menu -->
+      <nav>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
+             
+             <strong> <p class="titleName">
+                Service Desk
+                <i class="right fas fa-angle-left" style="color: rgb(191, 184, 184);"></i>
+              </p>
+            </strong>
+            </a>
+            <ul class="nav nav-treeview">
+                <li *ngFor="let element of elements" class="nav-item">
+                    <a *ngIf="element.visible" class="nav-link">
+                         
+                              
+                               <img [src]="element.icon" class="MenuIcon">  &nbsp;
+                                <p style="color: white;">
+                                   {{element.label}}
+                                   <i class="right fas fa-angle-left"></i>
+                                </p>
+                    </a>
+                    <ul *ngIf="element.visible" class="nav nav-treeview">
+                       <li *ngFor="let item of element.items" class="nav-item" [routerLink]="item.routerLink">
+                            <img [src]="item.icon" class="subMenuIcon">  &nbsp;
+                             <label style="color:white;"> {{item.label}} </label>
+                       </li>
+                    </ul>
+
+                    <a *ngIf="!element.visible" [routerLink]="element.routerLink"
+                          class="nav-link">
+                          <img [src]="element.icon" class="MenuIcon">  &nbsp;
+                           <p style="color: white">
+                               {{element.label}}
+                           </p>
+                    </a>
+                </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+

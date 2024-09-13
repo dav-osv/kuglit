@@ -1,0 +1,326 @@
+<div id="header" class="row">
+    <div class="row">
+        <h2 class="col">Solicitud</h2>
+        <h3 class="col" *ngIf="solicitudDetalle.estatus != 0">Solicitud ID: {{solicitudDetalle.id}}</h3>
+        <h3 class="col">Estatus: {{estatus}}</h3>
+        <h3 class="col">Prioridad {{prioridad}}</h3>
+        <button class="col" pButton pRipple type="button" icon="pi pi-times"
+            class="p-button-rounded p-button-text p-button-lg" [routerLink]="['/solicitudes/listado/']"></button>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <div class="container-fluid">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- <p-selectButton #selectButton [options]="opciones" [(ngModel)]="opcion" optionLabel="name" [multiple]="false"
+                            optionValue="value" (onChange)="onChangeOpcion()">
+                        </p-selectButton> -->
+
+                        <p-tabView>
+                            <p-tabPanel header="General">
+                                <ng-template pTemplate="content">
+
+                                    <div class="row" id="general">
+
+                                        <div id="detalleUsuario" class="col justify-content-md-center">
+                                            <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xlarge"
+                                                shape="circle"></p-avatar>
+                                            <span class="row">fecha de nacimiento: {{fechaDeNacimiento}}</span>
+                                            <span class="row">Celular: {{solicitudDetalle.telefono}}</span>
+                                            <span class="row">Genero: {{solicitudDetalle.genero ? "Masculino" :
+                                                "Femenino"}}</span>
+                                            <span class="row">¿Tiene numero empresariao? {{"No"}}</span>
+                                            <span class="row">Extenci&oacute;n {{solicitudDetalle.extencion ??
+                                                "0000"}}</span>
+                                        </div>
+
+                                        <div class="col-9">
+                                            <div id="grupo" class="row">
+                                                <span>Grupo {{solicitudDetalle.grupo}}</span>
+                                                <span>Fecha recepcion {{fechaRecepcion}}</span>
+                                                <span>fecha ultima modificaci&oacute;n {{fechaModificacion}}</span>
+                                            </div>
+                                            <div id="categorizacion" class="row">
+                                                <div class="row justify-content-md-center">
+                                                    <h2>Categorizacion</h2>
+                                                    <div class="row">
+                                                        <h3 class="col">Servicio</h3>
+                                                        <p-multiSelect class="col-8" [options]="serviciosList"
+                                                            [(ngModel)]="servicio"
+                                                            (onChange)="onChange($event,'servicio')"
+                                                            defaultLabel="Selecciona un servicio" optionLabel="nombre"
+                                                            optionValue="id" [selectionLimit]="1"></p-multiSelect>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h3 class="col">Categoria</h3>
+                                                        <p-multiSelect class="col-8" [options]="categoriasList"
+                                                            [(ngModel)]="categoria"
+                                                            (onChange)="onChange($event, 'categoria')"
+                                                            defaultLabel="Selecciona una categoria" optionLabel="nombre"
+                                                            optionValue="id" [selectionLimit]="1"></p-multiSelect>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h3 class="col">subcategoria</h3>
+                                                        <p-multiSelect class="col-8" [options]="subcategoriasList"
+                                                            [(ngModel)]="subcategoria"
+                                                            (onChange)="onChange($event, 'subcategoria')"
+                                                            defaultLabel="Selecciona una subcategoria"
+                                                            optionLabel="nombre" optionValue="id" [selectionLimit]="1"
+                                                            emptyMessage="No existen subcategorias"></p-multiSelect>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h3 class="col">otra categoria</h3>
+                                                        <p-multiSelect class="col-8" [options]="otrascategorias"
+                                                            [(ngModel)]="seleccionado"
+                                                            (onChange)="onChange($event, 'otracategoria')"
+                                                            defaultLabel="Selecciona otra categoria"
+                                                            optionLabel="nombre" optionvalue="idotraCategoria"
+                                                            [selectionLimit]="1"
+                                                            emptyMessage="No existen otras categorias">
+                                                        </p-multiSelect>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row justify-content-md-center">
+                                                    <h2>Agente</h2>
+                                                    <div class="row">
+                                                        <h3 class="col">Nivel 1</h3>
+                                                        <p-multiSelect class="col-8" [options]="agentesN1"
+                                                            [(ngModel)]="agenteN1" (onChange)="onChange($event, 'n1')"
+                                                            defaultLabel="Selecciona un Agente de nivel 1"
+                                                            optionLabel="nombre" optionValue="idUsuarioE"
+                                                            [selectionLimit]="1"></p-multiSelect>
+                                                    </div>
+
+                                                    <div class="row" *ngIf="agenteN1.length > 0 && solicitudDetalle.id">
+                                                        <h3 class="col">Nivel 2</h3>
+                                                        <p-multiSelect class="col-8" [options]="agentesN2"
+                                                            [(ngModel)]="agenteN2" (onChange)="onChange($event, 'n2')"
+                                                            defaultLabel="Selecciona un Agente de nivel 2"
+                                                            optionLabel="nombre" optionValue="idUsuarioE"
+                                                            [selectionLimit]="1"></p-multiSelect>
+                                                    </div>
+                                                    <div class="row" *ngIf="agenteN2.length > 0 && solicitudDetalle.id">
+                                                        <h3 class="col">Nivel 3</h3>
+                                                        <p-multiSelect class="col-8" [options]="agentesN3"
+                                                            [(ngModel)]="agenteN3" (onChange)="onChange($event, 'n3')"
+                                                            defaultLabel="Selecciona un Agente de nivel 3"
+                                                            optionLabel="nombre" optionValue="idUsuarioE"
+                                                            [selectionLimit]="1"></p-multiSelect>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h3 class="col">Grupo de soporte</h3>
+                                                        <p-multiSelect class="col-8" [options]="gruposSoporte"
+                                                            [(ngModel)]="grupoDeSoporte"
+                                                            (onChange)="onChange($event, 'grupoSoporte')"
+                                                            defaultLabel="Selecciona un grupo de soporte"
+                                                            optionLabel="nombre" optionValue="id" [selectionLimit]="1">
+                                                        </p-multiSelect>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <h3 class="col">Activos afectados</h3>
+                                                        <p-multiSelect class="col-8" [options]="activos"
+                                                            [(ngModel)]="seleccionado"
+                                                            (onChange)="onChange($event, 'activos')"
+                                                            defaultLabel="Selecciona un Activo" optionLabel="nombre"
+                                                            optionValue="id"></p-multiSelect>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <h3>Priorizaci&oacute;n</h3>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p-toggleButton onLabel="Incidente" offLabel="Incidente"
+                                                            onIcon="pi pi-check" offIcon="pi pi-times"
+                                                            (onChange)="onChange($event, 'incidente')"
+                                                            [(ngModel)]="incidente"></p-toggleButton>
+                                                    </div>
+
+                                                    <div *ngIf="incidente" class="col">
+                                                        <p-toggleButton onLabel="Incidente Mayor"
+                                                            offLabel="Incidente Mayor" onIcon="pi pi-check"
+                                                            (onChange)="onChange($event, 'incidenteMayor')"
+                                                            offIcon="pi pi-times" [(ngModel)]="incidenteMayor">
+                                                        </p-toggleButton>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <div class="row">
+                                                            <h4 class="col">urgencia</h4>
+                                                            <p-selectButton class="col-10 "
+                                                                [options]="opcionesImpactoUrgencia"
+                                                                [(ngModel)]="impacto"
+                                                                (onChange)="onChange($event, 'urgencia')"
+                                                                optionLabel="name" optionValue="value">
+                                                            </p-selectButton>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <h4 class="col">Impacto</h4>
+                                                            <p-selectButton class="col-10"
+                                                                [options]="opcionesImpactoUrgencia"
+                                                                [(ngModel)]="urgencia"
+                                                                (onChange)="onChange($event, 'impacto')"
+                                                                optionLabel="name" optionValue="value">
+                                                            </p-selectButton>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-3">
+                                                        <span>Prioridad: {{prioridad}}</span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <h2>Detalles</h2>
+                                                <span class="p-float-label">
+                                                    <textarea id="float-input" rows="5" style="width: 100%;"
+                                                        pInputTextarea [(ngModel)]="descripcion"
+                                                        (ngModelChange)="onChange($event, 'descripcion')"></textarea>
+                                                    <label for="float-input">Descripcion</label>
+                                                </span>
+                                            </div>
+
+                                            <div class="row">
+                                                <button class="col-2" pButton
+                                                    (click)="aceptarSolicitud()">Aceptar</button>
+                                                <button class="col-2" pButton
+                                                    (click)="banderaRechazarSolicitud = true">Rechazar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-tabPanel>
+
+
+                            <p-tabPanel header="Seguimiento">
+                                <ng-template pTemplate="content">
+                                    <div id="seguimiento" class="row">
+                                        <div class="col-7" id="comentarios">
+
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="row">
+                                                <span class="p-float-label">
+                                                    <textarea id="float-input" rows="5" cols="30" pInputTextarea
+                                                        [(ngModel)]="comentario"></textarea>
+                                                    <label for="float-input">Comentario</label>
+                                                </span>
+                                            </div>
+
+                                            <div class="row">
+                                                <p-inplace class="col">
+                                                    <ng-template pTemplate="display">
+                                                        <p-button class="p-button-sm" label="" icon="pi pi-upload"
+                                                            iconPos="left"></p-button>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="content">
+                                                        <p-fileUpload [showUploadButton]="false"
+                                                            chooseLabel="Adjuntar archivo" cancelLabel="Borrar adjuntos"
+                                                            [maxFileSize]="1000000" [fileLimit]="1" [multiple]="true"
+                                                            (onSelect)="onFileChange($event)"
+                                                            (onRemove)="onFileChange($event)">
+                                                            <ul *ngIf="adjuntos.length">
+                                                                <li *ngFor="let file of adjuntos">{{file.name}} -
+                                                                    {{file.size}} bytes</li>
+                                                            </ul>
+                                                        </p-fileUpload>
+                                                    </ng-template>
+                                                </p-inplace>
+
+                                                <p-button class="col p-button-sm" label="Agregar comentario publico"
+                                                    [disabled]="comentario === '' || adjuntos.length === 0"
+                                                    (onClick)="onAgregarSeguimiento()">
+                                                </p-button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </ng-template>
+                            </p-tabPanel>
+
+                            <p-tabPanel header="Problemas" *ngIf="false">
+                                <ng-template pTemplate="content">
+                                    Complex Content to Lazy Load
+                                </ng-template>
+                            </p-tabPanel>
+
+                            <p-tabPanel header="Cambios" *ngIf="false">
+                                <ng-template pTemplate="content">
+                                    Complex Content to Lazy Load
+                                </ng-template>
+                            </p-tabPanel>
+
+                            <p-tabPanel header="Cierre" *ngIf="solicitudDetalle.estatus == 1">
+                                <ng-template pTemplate="content">
+                                    <div id="cierre">
+                                        <span class="p-float-label">
+                                            <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="descripcionCierre"></textarea>
+                                            <label for="float-input">Descripcion de la solucion</label>
+                                        </span>
+                                    
+                                        <span class="p-float-label">
+                                            <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="observaciones"></textarea>
+                                            <label for="float-input">Observaciones</label>
+                                        </span>
+                                    
+                                        <p-button label="Cerrar solicitud" (click)="cerrarSolicitud()"></p-button>
+                                    </div>
+                                </ng-template>
+                            </p-tabPanel>
+
+                            <p-tabPanel header="Calificacion" *ngIf="solicitudDetalle.estatus == 3">
+                                <ng-template pTemplate="content">
+                                    <div id="calificacion">
+                                        <p-rating [(ngModel)]="calificacion" [cancel]="false" (onRate)="calificarSolicitud()"></p-rating>
+                                    </div>
+                                </ng-template>
+                            </p-tabPanel>
+
+                            <p-tabPanel header="Catalogo de soluciones" *ngIf="solicitudDetalle.estatus == 0">
+                                <ng-template pTemplate="content">
+                                    <div id="soluciones">
+                                        <span>soluciones placeholder</span>
+                                    </div>
+                                </ng-template>
+                            </p-tabPanel>
+                        </p-tabView>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+</div>
+
+<p-dialog header="Rechazar Solicitud" [(visible)]="banderaRechazarSolicitud" [style]="{width: '50vw'}">
+
+    <div class="col">
+        <label for="" class="row">¿Porque se rechaza la solicitud?</label>
+        <textarea class="row" rows="5" cols="30" pInputTextarea [(ngModel)]="razonRechazo"></textarea>
+    </div>
+
+    <ng-template class="row" pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="rechazarSolicitud()" label="Ok" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="banderaRechazarSolicitud=false" label="Cancelar"
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+
+</p-dialog>
+
+
+<p-toast></p-toast>
+<p-confirmDialog header="Rechazar solicitud" icon="pi pi-exclamation-triangle"></p-confirmDialog>

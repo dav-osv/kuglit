@@ -1,0 +1,28 @@
+tbody {
+  tr {
+    cursor: move;
+  }
+}
+
+.required {
+  color: red;
+}
+
+.visible {
+  color: rgb(233, 195, 24);
+}
+
+.modalDelete {
+  cursor: pointer;
+}
+
+.modalDelete:hover {
+  color: rgb(216, 9, 9);
+}
+.modalEdit {
+  cursor: pointer;
+}
+
+.modalEdit:hover {
+  color: rgb(33, 121, 236);
+}

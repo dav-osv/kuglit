@@ -1,0 +1,129 @@
+
+    <div class="row">
+      <div class="col-md-12 ">
+           <h5 class="titleMain">Nueva Categoria</h5>
+      </div>
+   </div>
+
+   <div class="row">
+     <div class="card-header p-0 pt-1">
+      <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill"  role="tab" aria-controls="custom-tabs-two-home" aria-selected="false"><label class="colorLabelMenu"> General </label></a>
+        </li>
+        <li class="nav-item">
+          <p class="mt-2" id="custom-tabs-two-profile-tab" data-toggle="pill"   role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false"><label class="colorLabelMenu"> &nbsp; Subcategorías </label></p>
+        </li>
+        <!-- <li class="nav-item">
+          <p class="mt-2" id="custom-tabs-two-messages-tab" data-toggle="pill"   role="tab" aria-controls="custom-tabs-two-messages" aria-selected="false"><label class="colorLabelMenu">&nbsp; Formulario</label></p>
+        </li> -->
+      </ul>
+     </div>
+   </div>
+
+   <br>
+    <form [formGroup]="validationService" (ngSubmit)="addCategory()"> 
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="">Nombre de la categoría</label>
+          <input type="text"
+                 pInputText
+                 [style]="{'width':'100%'}"
+                 placeholder="Nombre de la categoría"
+                 [(ngModel)]="newCategoria.nombre"
+                 formControlName="nombre"
+                 [class.is-invalid]="invalidCategoria" 
+           >
+           <small *ngIf="invalidCategoria" class="text-danger"><br>El campo nombre de la categoría es requerido</small>
+      </div>
+
+      <div class="form-group col-md-6">
+          <label style="font-weight: 450;">Grupo de soporte</label>
+          <p-multiSelect   
+                       [options]="grupos"   
+                       [style]="{'width':'100%'}"
+                       (onClick)="onChangeGrupo()"  
+                       [(ngModel)]="newCategoria.grupo " 
+                       formControlName="grupo" 
+                       defaultLabel="Selecciona un grupo" 
+                       optionLabel="nombre" 
+                       optionValue="id" 
+                       [selectionLimit]="1"
+                       >
+         </p-multiSelect> 
+       </div>
+    </div>
+
+    <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="ml-2" style="font-weight: 450;">Estatus.</label>
+             <p-inputSwitch  formControlName="estatus" 
+                             [(ngModel)]="newCategoria.estatus"
+
+                        
+             ></p-inputSwitch>
+     </div>
+
+      <div class="form-group col-md-6">
+        <div class="form-check">
+        <input class="form-check-input" 
+               type="checkbox" 
+               id="gridCheck"
+               formControlName="politicaAcceso"
+               [(ngModel)]="newCategoria.politica"
+               
+          >
+        <label class="form-check-label" for="gridCheck">
+             Requiere politica de acceso a seguridad
+        </label>
+      </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+       <label for="inputAddress">Agentes a los que se les asignara la categoría de bugs</label>
+
+       <p-multiSelect    
+                               
+                         [options]="agentes"    
+                         [style]="{'width': '100%'}"
+                         [(ngModel)]="newCategoria.idsAgentes" 
+                         formControlName="agentes" 
+                         defaultLabel="Seleccione un grupo de agentes" 
+                         optionLabel="nombre" 
+                         optionValue="id" 
+                       
+         >
+        </p-multiSelect>
+
+    </div>
+
+    <div class="form-group">
+         <label for="inputAddress">Descripción</label>
+            <textarea 
+                      [style]="{'width': '100%'}"
+                      formControlName="descripcion"
+                      pInputTextarea
+                      [(ngModel)]="newCategoria.descripcion" 
+             >
+           </textarea>
+     </div>
+
+
+    
+    <div class="separator"></div>
+
+    <div class="text-center mt-2">
+
+         <button id="" pButton label="Cancelar" (click) = "cancel()"  type="button" iconPos="right" class="p-button-sm"></button>
+         <button id="" pButton label="Guardar y Cerrar" type="submit" iconPos="right" class="p-button-sm ml-2"></button>
+
+         <!-- <button pButton label="Guardar y Continuar"  iconPos="right"  type="submit" class="p-button-sm ml-2"></button> -->
+   </div>
+
+
+     </form> 
+
+

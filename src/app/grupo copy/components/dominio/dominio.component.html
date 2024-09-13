@@ -1,0 +1,187 @@
+<div class="row">
+  <div class="col-12 col-md-6">
+    <label for="grupo">Grupo:</label>
+    <input
+      class="form-control"
+      type="text"
+      id="grupo"
+      [(ngModel)]="dominio.nombre"
+    />
+    <label for="titulo">Título del sitio:</label>
+    <input
+      class="form-control"
+      type="text"
+      id="titulo"
+      [(ngModel)]="dominio.tituloSitio"
+    />
+    <div class="row mt-2">
+      <!-- <div class="col-12 col-md-4">
+        <label for="subdominio">Subdominio:</label>
+        <p id="subdominio">https://nst.klugit.com</p>
+      </div> -->
+      <div class="col-12 col-sm-6">
+        <label for="cPrimario">Color primario:</label>
+        <input
+          class="form-control"
+          type="color"
+          id="cPrimario"
+          [(ngModel)]="dominio.colorPrimario"
+        />
+      </div>
+      <div class="col-12 col-sm-6">
+        <label for="cSecundario">Color secundario:</label>
+        <input
+          class="form-control"
+          type="color"
+          id="cSecundario"
+          [(ngModel)]="dominio.colorSecundario"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- IMAGENES -->
+  <div class="col-12 col-md-3">
+    <img src="" alt="Cargar imagen" />
+  </div>
+  <div class="col-12 col-md-3">
+    <img src="" alt="Cargar imagen" />
+  </div>
+
+  <hr />
+  <!-- NUMEROS -->
+  <div class="row text-center">
+    <div class="col-12 col-sm-4">
+      <label for="administradores">Administradores</label>
+      <p id="administradores">{{dominio.totalAdmin}}</p>
+      <!-- <p id="administradores">{{ dominio.administradores }}</p> -->
+    </div>
+    <div class="col-12 col-sm-4">
+      <label for="agentes">Agentes</label>
+      <p id="agentes">{{dominio.totalAgentes}}</p>
+    </div>
+    <div class="col-12 col-sm-4">
+      <label for="usuarios">Usuarios</label>
+      <p id="usuarios">{{dominio.totalUsuarios}}</p>
+    </div>
+  </div>
+
+  <hr />
+  <!-- PAGINAS -->
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+      <label for="nPagina">Nombre de la página de interés:</label>
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        id="nPagina"
+        [(ngModel)]="dominio.nombrePaginaInteres"
+      />
+      <label for="link">Link de la página de interés:</label>
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        id="link"
+        [(ngModel)]="dominio.linkPaginaInteres"
+      />
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="facebook">Facebook:</label>
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        id="facebook"
+        [(ngModel)]="dominio.facebook"
+      />
+      <label for="twitter">Twitter</label>
+      <input
+        class="form-control"
+        type="text"
+        name=""
+        id="twitter"
+        [(ngModel)]="dominio.twitter"
+      />
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col">
+      <h5>Mensajes</h5>
+      <nav class="navbar navbar-expand navbar-light">
+        <ul class="navbar-nav ms-auto mb-2">
+          <li class="nav-item">
+            <a class="nav-link" (click)="cambiarTXT(1, mensajeSitio)"
+              ><small><strong>Mensaje del sitio</strong></small></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="cambiarTXT(2, textoParaSoporteT)"
+              ><small><strong>Texto para soporte de técnico</strong></small></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="cambiarTXT(3, terminosCondiciones)"
+              ><small><strong>Terminos y condiciones</strong></small></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="cambiarTXT(4, avisoPrivacidad)"
+              ><small><strong>Avisos y privacidad</strong></small></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <angular-editor
+        [(ngModel)]="mensajeSitio"
+        *ngIf="MDS"
+        [config]="editorConfig"
+      ></angular-editor>
+      <!-- formControlName="htmlContent" -->
+      <angular-editor
+        [(ngModel)]="textoParaSoporteT"
+        *ngIf="TPST"
+        [config]="editorConfig"
+      ></angular-editor>
+      <!-- formControlName="htmlContent" -->
+      <angular-editor
+        [(ngModel)]="terminosCondiciones"
+        *ngIf="TYC"
+        [config]="editorConfig"
+      ></angular-editor>
+      <!-- formControlName="htmlContent" -->
+      <angular-editor
+        [(ngModel)]="avisoPrivacidad"
+        *ngIf="AYP"
+        [config]="editorConfig"
+      ></angular-editor>
+      <!-- formControlName="htmlContent" -->
+
+      <!-- <angular-editor
+        [(ngModel)]="htmlContent"
+        [config]="editorConfig"
+      ></angular-editor> -->
+      <br />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" (click)="guardar(dominio)">
+        Guardar
+      </button>
+    </div>
+  </div>
+  <br />
+  <br />
+</div>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------ -->

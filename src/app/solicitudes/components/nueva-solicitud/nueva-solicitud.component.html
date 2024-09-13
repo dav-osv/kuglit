@@ -1,0 +1,74 @@
+<div id="nuevaSolicitud">
+
+    <div class="row">
+        <div class="col-10">
+
+        </div>
+        <div class="col">
+            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-text p-button-lg" (click)="cerrar()"></button>
+        </div>
+    </div>
+    
+    <div class="row">
+        <p-steps [model]="pasos" [readonly]="false" [(activeIndex)]="pasoActual" (click)="cambiarPaso()"></p-steps>
+
+        <div id="grupo" *ngIf="pasoActual == 0">
+            <p-listbox [options]="gruposData" [(ngModel)]="nuevaSolicitud.idGrupo" optionLabel="nombre" optionValue="id"
+                (onClick)="onChangeGrupoNuevaSolicitud()" [filter]="true" emptyMessage="No se encontraron grupos" emptyFilterMessage="No se encontraron grupos"></p-listbox>
+        </div>
+
+        <div id="notificador" *ngIf="pasoActual == 1">
+            <p-listbox [options]="solicitantesData" [(ngModel)]="nuevaSolicitud.idNotificador" optionLabel="nombre"
+                optionValue="idUsuarioE" (onClick)="onChangeUsuarioNuevaSolicitud()" [filter]="true" 
+                emptyMessage="No se encontraron usuarios" emptyFIlterMessage="No se encontraron usuarios"
+            ></p-listbox>
+        </div>
+
+        <div id="servicios" *ngIf="pasoActual == 2">
+            <p-listbox [options]="serviciosData" [(ngModel)]="nuevaSolicitud.idServicio" optionLabel="nombre"
+                optionValue="id" (onClick)="onChangeServicioNuevaSolicitud()" [filter]="true"
+                emptyMessage="No se encontraron servicios" emptyFilterMessage="No se encontraron servicios"
+            ></p-listbox>
+        </div>
+
+        <div id="categoria" *ngIf="pasoActual == 3">
+            <p-listbox [options]="categoriasData" [(ngModel)]="nuevaSolicitud.idCategoria" optionLabel="nombre"
+                optionValue="id" (onClick)="onChangeCategoriaNuevaSolicitud()" [filter]="true"
+                emptyMessage="No se encontraron categorias"
+                emptyFilterMessage="No se encontraron categorias"
+            ></p-listbox>
+        </div>
+
+        <div id="subcategoria" *ngIf="pasoActual == 4">
+            <p-button label="siguiente" (onClick)="onChangeSubcategoriaNuevaSolicitud()"></p-button>
+            <p-listbox [options]="subcategoriasData" [(ngModel)]="nuevaSolicitud.idSubcategoria" optionLabel="nombre"
+                optionValue="id" (onClick)="onChangeSubcategoriaNuevaSolicitud()" [filter]="true"
+                emptyMesage="No se encontraron subcategorias" emptyFilterMessage="No se encontraron subcategorias"
+            ></p-listbox>
+        </div>
+
+        <div id="resumen" *ngIf="pasoActual == 5">
+            <h3>Descripci&oacute;n y adjuntos(Opcional)</h3>
+            <span class="p-float-label">
+                <textarea id="float-input" rows="5" cols="30" pInputTextarea
+                    [(ngModel)]="nuevaSolicitud.descripcion"></textarea>
+                <label for="float-input">Descripción</label>
+            </span>
+
+
+            <p-fileUpload [showUploadButton]="false" chooseLabel="Adjuntar archivo" cancelLabel="Borrar adjuntos"
+                [maxFileSize]="1000000" [fileLimit]="5" [multiple]="true" (onSelect)="onFileChange($event)"
+                (onRemove)="onFileChange($event)">
+                <ul *ngIf="archivos.length">
+                    <li *ngFor="let file of archivos">{{file.name}} - {{file.size}} bytes</li>
+                </ul>
+            </p-fileUpload>
+
+            <p-button icon="pi pi-check" (click)="altaSolicitud()" label="Levantar solicitud" class="p-button-text">
+            </p-button>
+            <p-button icon="pi pi-times" label="Cancelar" (click)="cerrar()" [routerLink]="['/solicitudes/listado/']"></p-button>
+        </div>
+
+    </div>
+</div>
+<p-toast></p-toast>

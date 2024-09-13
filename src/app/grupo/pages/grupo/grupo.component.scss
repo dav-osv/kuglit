@@ -1,0 +1,35 @@
+@import "src/sass/variables.scss";
+
+ul {
+  li {
+    cursor: pointer;
+    font-size: small;
+    border: none;
+    border-radius: 0px;
+    background: #f8f9fa;
+  }
+}
+
+.active {
+  background: $primaryTwo-colorV01 !important;
+  border-bottom: solid 6px $secundaryOne-colorV01 !important;
+  border-top: none !important;
+  color: #fff !important;
+  font-size: medium !important;
+}
+
+.col-One {
+  border-top: solid 6px $terciaryOne-colorV01;
+  // padding: 0px;
+}
+
+// .col-One {
+//   h6 {
+//     border-bottom: solid 6px $terciaryOne-colorV01;
+//   }
+//   // border-top: solid 6px $terciaryOne-colorV01;
+//   // padding: 0px;
+// }
+.col-Two {
+  border-top: solid 6px $terciaryTwo-colorV01;
+}

@@ -1,0 +1,208 @@
+<div class="row">
+  <div class="row">
+    <div class="col">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#modalNuevoGrupoSoporte"
+      >
+        Nuevo grupo de soporte
+      </button>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="col">
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">#</th>
+          <th scope="col">Grupo de soporte</th>
+          <th scope="col">Administrador del grupo</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let grupo of grupos; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ grupo.nombre }}</td>
+          <td>{{ grupo.administrador }}</td>
+          <td>
+            <i class="pi pi-pencil" (click)="detalleGrupo(grupo.id)"></i>
+            <i class="pi pi-trash" ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+
+<!-- MODAL AGREGAR NUEVO GRUPO DE SOPORTE -->
+<div
+  class="modal fade"
+  id="modalNuevoGrupoSoporte"
+  tabindex="-1"
+  aria-labelledby="modalNuevoGrupoSoporteLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalNuevoGrupoSoporteLabel">
+          Agregar grupo de soporte
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="newName">Nombre:</label>
+        <input
+          class="form-control"
+          type="text"
+          id="newName"
+          [(ngModel)]="nombreGrupoSoporte"
+        />
+        <label for="newAdmin">Administrador del grupo</label>
+        <select
+          class="form-select"
+          id="newAdmin"
+          aria-label="Default select example"
+          [(ngModel)]="idAdministrador"
+        >
+          <option selected>Seleccione un administrador</option>
+          <option *ngFor="let usuario of posiblesAdministradores" [value]="usuario.idUsuarioE">{{usuario.nombre}}</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="crearGrupo(nombreGrupoSoporte)"
+          [disabled]="nombreGrupoSoporte === ''"
+          data-bs-dismiss="modal"
+        >
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR NUEVO GRUPO DE SOPORTE -->
+<!-- MODAL AGREGAR BORRAR PREGUNTA -->
+<div
+  class="modal fade"
+  id="modalBorrarGrupo"
+  tabindex="-1"
+  aria-labelledby="modalBorrarGrupoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="modalBorrarGrupoLabel">
+          <strong> ¿Estas seguro de borrar el grupo de soporte? </strong>
+          <br />
+        </h6>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Se borrara el grupo 'nombre grupo'.</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="eliminarGrupo(1)"
+          data-bs-dismiss="modal"
+        >
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR NUEVA PREGUNTA -->
+<!-- -------------------------------------------------------------------------------- -->
+<!-- MODAL AGREGAR EDITAR PREGUNTA -->
+<div
+  class="modal fade"
+  id="modalEditarGrupo"
+  tabindex="-1"
+  aria-labelledby="modalEditarGrupoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalEditarGrupoLabel">
+          Editar grupo de soporte
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="newName">Nombre:</label>
+        <input class="form-control" type="text" id="newName" />
+        <label for="newAdmin">Administrador del grupo</label>
+        <select
+          class="form-select"
+          id="newAdmin"
+          aria-label="Default select example"
+        >
+          <option selected>Seleccione un administrador</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="actualizarGrupo(grupos)"
+          data-bs-dismiss="modal"
+        >
+          Editar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR EDITAR PREGUNTA -->
+<!-- -------------------------------------------------------------------------------- -->

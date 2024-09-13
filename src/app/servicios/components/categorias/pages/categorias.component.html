@@ -1,0 +1,43 @@
+<p-card>
+
+   <div *ngIf="visibleList">
+      <app-listado-categorias
+              [categories] = "categories"
+              (onOpenComponentNewCategory)="openComponentNewCategory()"
+              (onOpenComponentEditCategory)="openComponentEditCategory($event)"
+              (onOpenModalDeleteCategory) = "deleteCategory($event)"
+      ></app-listado-categorias>
+
+      <div class="text-right mt-2">
+         <button pButton label="Guardar Servicio" (click)="saveService()"   iconPos="right"  type="submit" class="p-button-sm"></button>
+      </div>
+
+   </div>
+
+
+   <div *ngIf="visibleNewCategoria">
+       <app-nueva-categoria
+
+              (onAddCategory) = "addCategory($event)"
+              (onCloseComponentNewContegory)="closeComponentNewCategory()"
+        >
+
+       </app-nueva-categoria>
+   </div>
+
+   <div *ngIf="visibleEditCategoria">
+
+      <app-editar-categoria-padre
+              
+              [editCategory] = "editCategory"
+              [editService] = "editService"
+              (onUpdateCategory)= "updateCategory($event)"
+              (onCloseComponentEditCategory)="closeComponentEditCategory()"
+
+      >
+      </app-editar-categoria-padre>
+   </div>
+   
+</p-card>
+
+

@@ -1,0 +1,45 @@
+<div class="row">
+
+  <div class="col">
+    <p-table [value]="listGrupos" responsiveLayout="scroll" selectionMode="multiple"
+      [(selection)]="grupoDetalle" [metaKeySelection]="true" dataKey="code"
+      (onRowSelect)="onClickGrupo($event)" >
+      
+      <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="nombre">Grupo <p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+            <th pSortableColumn="administradores">Administradores<p-sortIcon
+                    field="administradores"></p-sortIcon>
+            </th>
+            <th>Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-grupo let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="grupo" [pSelectableRowIndex]="rowIndex">
+          <td>{{grupo.nombre}}</td>
+          <td>{{grupo.administradores}}</td>
+          <td><i class="pi pi-trash" (click)="borrarGrupo(grupo.id)"></i></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="row paginador">
+    <div *ngIf="totalGrupos > 0 && rows < totalGrupos;else paginadorPlaceholder" class="col-11">
+      <p-paginator [rows]="rows" [totalRecords]="totalGrupos" (onPageChange)="onChangePage($event)">
+      </p-paginator>
+    </div>
+    <ng-template #paginadorPlaceholder>
+      <div class="col-11"></div>
+    </ng-template>
+
+    <div class="col-1">
+      <p-dropdown [options]="[{name: 10}, {name: 20}, {name: 50}, {name: 100}]" [(ngModel)]="rows" optionLabel="name"
+        optionValue="name" [(ngModel)]="sort.rowsOnPage" (onChange)="getGrupos()">
+      </p-dropdown>
+    </div>
+  </div>
+</div>
+<p-confirmDialog></p-confirmDialog>

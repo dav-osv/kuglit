@@ -1,0 +1,37 @@
+<p-card>
+      
+      <app-listado-contactos
+            [contacts] = "contacts"
+            (onOpenModalnewContact)="openModalnewContact()"
+            (onOpenModalEditContact)="openModalEditContact($event)"
+            (onOpenModalDeleteContact) = "deleteContact($event)"
+      ></app-listado-contactos>
+
+
+      <p-dialog [(visible)]="contactDialogAdd" [style]="{width: '500px'}" header="Contacto" [modal]="true" styleClass="p-fluid">
+          <app-nuevo-contacto    
+               (onAddContact)="addContact($event)"
+               (onCloseModalnewContact)="closeModalnewContact()"> 
+           </app-nuevo-contacto>
+      </p-dialog>
+
+
+      <p-dialog [(visible)]="contactDialogEdit" [style]="{width: '500px'}" header="Contacto" [modal]="true" styleClass="p-fluid">
+            <app-editar-contacto 
+                 
+                 [editContact]="editContact"
+                 (onUpdateContact)="updateContact($event)"
+                 (onCloseModalEditContact)="closeModalEditContact()"
+
+           > </app-editar-contacto>
+      </p-dialog>
+
+
+
+      <div class="text-right mt-2">
+            <button pButton label="Guardar Servicio" (click)="saveService()" iconPos="right"  type="submit" class="p-button-sm"></button>
+      </div>
+
+      
+
+</p-card>

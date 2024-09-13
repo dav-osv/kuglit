@@ -1,0 +1,243 @@
+<div class="row">
+  <div class="col">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#modalNuevaPregunta"
+    >
+      Nueva pregunta
+    </button>
+  </div>
+</div>
+<br />
+<div class="row" *ngIf="preguntas.length > 0">
+  <div class="col">
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">#</th>
+          <th scope="col">Requerida</th>
+          <th scope="col">Pregunta</th>
+          <th scope="col">Respuesta</th>
+          <th scope="col">Habilitado</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+        <tr
+          class="text-center"
+          *ngFor="let pregunta of preguntas; index as i"
+          cdkDrag
+        >
+          <td>{{ i + 1 }}</td>
+          <td><mat-icon class="required">verified</mat-icon></td>
+          <td>{{ pregunta.name }}</td>
+          <td>{{ pregunta.title }}</td>
+          <td class="visible">
+            <mat-icon>visibility_off</mat-icon>
+            <mat-icon>visibility_on</mat-icon>
+          </td>
+          <td>
+            <mat-icon
+              class="modalDelete me-3"
+              data-bs-toggle="modal"
+              data-bs-target="#modalBorrarPregunta"
+              >delete</mat-icon
+            >
+            <mat-icon
+              class="modalEdit"
+              data-bs-toggle="modal"
+              data-bs-target="#modalEditarPregunta"
+              >edit</mat-icon
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+
+<!-- MODAL AGREGAR NUEVA PREGUNTA -->
+<div
+  class="modal fade"
+  id="modalNuevaPregunta"
+  tabindex="-1"
+  aria-labelledby="modalNuevaPreguntaLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalNuevaPreguntaLabel">
+          Agregar nueva pregunta
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <mat-slide-toggle>Habilitar</mat-slide-toggle>
+          </div>
+          <div class="col-6">
+            <mat-slide-toggle>Pregunta obligatoria</mat-slide-toggle>
+          </div>
+        </div>
+        <br />
+        <label for="newName">Pregunta:</label>
+        <input class="form-control" type="text" id="newName" />
+        <label for="newAdmin">Tipo de dato:</label>
+        <select
+          class="form-select"
+          id="newAdmin"
+          aria-label="Default select example"
+        >
+          <option selected>Seleccione un tipo de dato</option>
+          <option value="1">Texto</option>
+          <option value="2">Boolean</option>
+          <option value="3">Fecha</option>
+          <option value="4">Select</option>
+          <option value="5">Número</option>
+          <option value="6">Correo</option>
+          <option value="7">Skype</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR NUEVA PREGUNTA -->
+<!-- -------------------------------------------------------------------------------- -->
+<!-- MODAL AGREGAR BORRAR PREGUNTA -->
+<div
+  class="modal fade"
+  id="modalBorrarPregunta"
+  tabindex="-1"
+  aria-labelledby="modalBorrarPreguntaLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="modalBorrarPreguntaLabel">
+          <strong> ¿Estas seguro de borrar la pregunta? </strong>
+          <br />
+          <strong> NOTA: </strong>
+          Se perderán todas las respuestas.
+        </h6>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label for="newName">Pregunta:</label>
+        <input class="form-control" type="text" id="newName" />
+        <label for="newAdmin">Tipo de dato:</label>
+        <select
+          class="form-select"
+          id="newAdmin"
+          aria-label="Default select example"
+        >
+          <option selected>Seleccione un tipo de dato</option>
+          <option value="1">Texto</option>
+          <option value="2">Boolean</option>
+          <option value="3">Fecha</option>
+          <option value="4">Select</option>
+          <option value="5">Número</option>
+          <option value="6">Correo</option>
+          <option value="7">Skype</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR NUEVA PREGUNTA -->
+<!-- -------------------------------------------------------------------------------- -->
+<!-- MODAL AGREGAR EDITAR PREGUNTA -->
+<div
+  class="modal fade"
+  id="modalEditarPregunta"
+  tabindex="-1"
+  aria-labelledby="modalEditarPreguntaLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalEditarPreguntaLabel">
+          Editar pregunta
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <mat-slide-toggle>Habilitar</mat-slide-toggle>
+          </div>
+          <div class="col-6">
+            <mat-slide-toggle>Pregunta obligatoria</mat-slide-toggle>
+          </div>
+        </div>
+        <br />
+        <label for="newName">Pregunta:</label>
+        <input class="form-control" type="text" id="newName" />
+        <label for="newAdmin">Tipo de dato:</label>
+        <select
+          class="form-select"
+          id="newAdmin"
+          aria-label="Default select example"
+        >
+          <option selected>Seleccione un tipo de dato</option>
+          <option value="1">Texto</option>
+          <option value="2">Boolean</option>
+          <option value="3">Fecha</option>
+          <option value="4">Select</option>
+          <option value="5">Número</option>
+          <option value="6">Correo</option>
+          <option value="7">Skype</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+          Editar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL AGREGAR EDITAR PREGUNTA -->
+<!-- -------------------------------------------------------------------------------- -->

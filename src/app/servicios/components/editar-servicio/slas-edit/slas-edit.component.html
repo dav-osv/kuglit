@@ -1,0 +1,80 @@
+
+<p-card>
+    <form [formGroup]="validationService" (ngSubmit)="updateService()">
+  
+            <div class="row">
+              <div class="col-md-6">
+                      <h5 class="titleMain">Acuerdos de nivel de servicio - SLA´s</h5>
+              </div>
+            </div>
+            
+          
+            <table style="width: 100%" class="mt-3">
+            <tbody>
+            <tr>
+            <td>
+                <table>
+                  <tbody>
+                      <tr class="text-center">
+                          <td></td>
+                          <td><label class="text-center titleSecundary">Días</label></td>
+                          <td><label class="text-center titleSecundary">Horas</label></td>
+                          <td><label class="text-center titleSecundary">Minutos</label></td>
+                      </tr>
+  
+                        <tr>
+                          <td> <label class="titleSecundary">Crítica</label></td>
+                          <td> <input type="number"  [(ngModel)]="editService.dia1"    formControlName="dia1"  class="ml-2 form-control"></td>
+                          <td> <input type="number"  [(ngModel)]="editService.hora1"   formControlName="hora1"   class="ml-2 form-control"></td>
+                          <td> <input type="number"  [(ngModel)]="editService.minuto1" formControlName="minuto1"   class="ml-2 form-control"></td>
+                        </tr>
+  
+                        <tr>
+                          <td> <label class="titleSecundary">Alta</label></td>
+                          <td> <input type="number"   [(ngModel)]="editService.dia2"    formControlName="dia2"  class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.hora2"   formControlName="hora2" class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.minuto2" formControlName="minuto2"  class="ml-2 form-control"></td>
+                        </tr>
+  
+                        <tr>
+                          <td> <label class="titleSecundary">Media</label></td>
+                          <td> <input type="number"   [(ngModel)]="editService.dia3"    formControlName="dia3"  class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.hora3"   formControlName="hora3" class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.minuto3" formControlName="minuto3" class="ml-2 form-control"></td>
+                        </tr>
+  
+                        <tr>
+                          <td> <label class="titleSecundary">Normal</label></td>
+                          <td> <input type="number"   [(ngModel)]="editService.dia4"    formControlName="dia4"  class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.hora4"   formControlName="hora4" class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.minuto4" formControlName="minuto4" class="ml-2 form-control"></td>
+                        </tr>
+  
+                        <tr>
+                          <td> <label class="titleSecundary">Baja</label></td>
+                          <td> <input type="number"   [(ngModel)]="editService.dia5"    formControlName="dia5"  class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.hora5"   formControlName="hora5" class="ml-2 form-control"></td>
+                          <td> <input type="number"   [(ngModel)]="editService.minuto5" formControlName="minuto5" class="ml-2 form-control"></td>
+                        </tr>
+  
+                    </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+          
+          
+          <div class="separator mt-3"></div>
+  
+              
+          <div class="text-center mt-2">
+  
+            <div class="text-center mt-2">
+              <button pButton label="Cancelar" type="button"  (click)="cancel()" iconPos="right" class="p-button-sm buttonCancel"></button>
+              <button pButton label="Guardar Servicio"   iconPos="right"  type="submit" class="p-button-sm buttonNext  ml-2"></button>
+            </div>
+        </div>
+  
+   </form>
+  </p-card>

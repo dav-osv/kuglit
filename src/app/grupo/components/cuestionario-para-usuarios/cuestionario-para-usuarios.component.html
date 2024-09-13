@@ -1,0 +1,7 @@
+<div class="row">
+  <app-tabla-cuestionario [dataPreguntas]="preguntas" 
+    (delete)="onClickBorrar($event)" 
+    (edit)="onClickEditar($event)" 
+    (create)="nuevaPregunta($event)"
+  ></app-tabla-cuestionario>
+</div>

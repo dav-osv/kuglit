@@ -1,0 +1,12 @@
+@import "src/sass/variables.scss";
+
+nav {
+  background: $primaryOne-colorV01;
+  color: #000;
+  height: 60px;
+  width: 100%;
+}
+
+.active {
+  border-bottom: solid 6px $secundaryOne-colorV01;
+}

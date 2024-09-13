@@ -1,0 +1,68 @@
+
+<form [formGroup]="validationService" (ngSubmit)="updateContact()">
+
+  <div class="form-row">
+      <div class="col-md-2">
+        <label class="fontLabel" >Nombre: <label style="color:#dc3545;">*</label></label>
+      </div>
+      <div class="col-md-10">
+          <input 
+                 class="inputTextContact"
+                 pInputText 
+                 [(ngModel)]="editContact.nombre" 
+                 formControlName="nombre"
+                 [class.is-invalid]="invalidContact" 
+          >
+          <small *ngIf="invalidContact" class="text-danger"><br>El nombre del contacto es obligatorio<br><br></small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-2">
+        <label class="fontLabel">Puesto:</label>
+      </div>
+      <div class="col-md-10">
+          <input class="inputTextContact"
+                 pInputText 
+                 [(ngModel)]="editContact.puesto" 
+                 formControlName="puesto"
+                >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-2">
+         <label class="fontLabel" >Correo:</label>
+      </div>
+      <div class="col-md-10">
+          <input 
+                 class="inputTextContact"
+                 pInputText 
+                 [(ngModel)]="editContact.correo" 
+                 formControlName="correo"
+               >
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label class="fontLabel" >Télefono:</label>
+     </div>
+     <div class="form-group col-md-10"> 
+          <input  
+                 class="inputTextContact"
+                 pInputText 
+                 [(ngModel)]="editContact.telefono" 
+                 formControlName="telefono"
+                >
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="text-center mt-2">
+       <button pButton label="Cancelar" type="button"  (click)="cancel()" iconPos="right" class="p-button-sm buttonCancel"></button>
+       <button pButton label="Guardar"  iconPos="right"  type="submit" class="p-button-sm buttonNext  ml-2"></button>
+     </div>
+</form>

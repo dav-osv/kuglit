@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" (click)="banderaModal = true">
+      Nueva pregunta
+    </button>
+  </div>
+</div>
+<br />
+
+<div class="row" *ngIf="preguntas.length > 0; else sinDatos">
+  <p-table [value]="preguntas" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th scope="col">Requerida</th>
+        <th scope="col">Pregunta</th>
+        <th scope="col">Respuesta</th>
+        <th scope="col">Estatus</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pregunta>
+      <tr>
+        <td>{{ pregunta.mandatorio ? "SI" : "NO"}}</td>
+        <td>{{pregunta.nombreCampo}}</td>
+        <td>{{ etiquetas[pregunta.tipoDato - 1] }}</td>
+        <td>{{ pregunta.estatus ? "Habilitada" : "Deshabilidata" }}</td>
+        <td>
+          <i class="pi pi-pencil" (click)="onClickEditar(pregunta)"></i>
+          <i class="pi pi-trash" (click)="onClickEliminar(pregunta)"></i>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<ng-template #sinDatos>
+  <h2>No hay ningún dato</h2>
+</ng-template>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------------ -->
+
+<!-- MODAL AGREGAR NUEVA PREGUNTA -->
+<p-dialog [header]="(banderaEditar ? 'Editar' : 'Nueva' )+ ' pregunta'" [modal]="true" [(visible)]="banderaModal" [draggable]="false" [resizable]="false" (onHide)="onCloseModal()">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <p-selectButton [options]="selectButtonOpciones" [(ngModel)]="requerida" optionLabel="label"
+              optionValue="value"></p-selectButton>
+            <label for="">¿Es requerida?</label>
+          </div>
+          <div class="col-6">
+            <p-selectButton [options]="selectButtonOpciones" [(ngModel)]="habilitado" optionLabel="label"
+             optionValue="value"></p-selectButton>
+             <label>Pregunta habilitada</label>
+          </div>
+        </div>
+        <br />
+        <label for="newName">Pregunta:</label>
+        <input class="form-control" type="text" id="pregunta" [(ngModel)]="pregunta" />
+        <label for="newAdmin">Tipo de dato:</label>
+        <select class="form-select" id="tipo" [(ngModel)]="tipo">
+          <option selected value="0">Seleccione un tipo de dato</option>
+          <option value="1">Texto</option>
+          <option value="2">Boolean</option>
+          <option value="3">Fecha</option>
+          <option value="4">Select</option>
+          <option value="5">Número</option>
+          <option value="6">Correo</option>
+          <option value="7">Skype</option>
+        </select>
+      </div>
+
+      <div *ngIf="tipo == 4">
+        <button [disabled]="!(nuevaOpcion !== '')" (click)="agregarOpcion()">Agregar opcion</button>
+        <input type="text" [(ngModel)]="nuevaOpcion">
+
+        <div *ngFor="let opcion of opcionSelect;let i = index">
+          <input type="text" [(ngModel)]="opcionSelect[i].valor">
+          <i class="pi pi-trash" (click)="onDeleteOpcion(i)"></i>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="banderaModal = false">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="onClickCrear()" [disabled]="!(pregunta !== '' && tipo != 0)">
+          {{ banderaEditar ? "Guardar cambios" : "Agregar"}}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</p-dialog>
+<!-- FIN MODAL AGREGAR NUEVA PREGUNTA -->
+
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

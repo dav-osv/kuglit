@@ -1,0 +1,328 @@
+<p-card>
+    
+    <div class="row">
+      <div class="col-md-12 ">
+         <h5 class="titleMain">Datos Generales</h5>
+      </div>
+   </div>
+   <br>
+  
+   <form [formGroup]="validationService" (ngSubmit)="updateService()">
+      
+    <div class="form-group row">
+      <label class="fontLabel">Logotipo</label>
+      <div class="col-sm-10">
+           <input type="hidden" formControlName="logotipo">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label class="col-sm-2 fontLabel">Nombre <label style="color:#dc3545;">*</label></label>
+      <div class="col-sm-10">
+          <input 
+                 class="form-control"
+                 pInputText 
+                 [(ngModel)]="editService.nombre" 
+                 formControlName="nombre" 
+                 class="inputTextTwo"
+                 [class.is-invalid]="invalidName">
+          <label class="messageInformative"> Puedes registrar un nuevo servicio o duplicar uno existente para asignarlo a otra organización. </label>
+          <small *ngIf="invalidName" class="text-danger"><br>Ingrese el nombre del servicio</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 fontLabel" >Descripción <label class="important">*</label></label>
+      <div class="col-sm-10">
+         <textarea 
+                   pInputTextarea  
+                   [style]="{'width': '80%'}"
+                   [(ngModel)]="editService.descripcion" 
+                   formControlName="descripcion" 
+                   [class.is-invalid]="invalidDescription" 
+                   [rows]="4">
+         </textarea>
+         <small *ngIf="invalidDescription" class="text-danger"><br>Ingrese la descripción del servicio</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-sm-2 " style="font-weight: 450;">Grupo(s) <label class="important">*</label></label>
+      <div class="col-sm-10">
+        <p-multiSelect   
+                         [options]="grupos"   
+                         [style]="{'width':'80%','heigth': '40%'}"
+                     
+                         [(ngModel)]="editService.idGrupo" 
+                         formControlName="grupo" 
+                         [class.is-invalid]="invalidGroup" 
+                         defaultLabel="Selecciona un grupo" 
+                         optionLabel="nombre" 
+                         optionValue="id" 
+                         [selectionLimit]="1"
+                         >
+        </p-multiSelect>
+        <small *ngIf="invalidGroup" class="text-danger"><br>Debe de seleccionar por lo menos un grupo</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-2 " style="font-weight: 450;">Dueño</label>
+      <div class="col-sm-10">
+        <p-multiSelect  [options]="duenios" 
+                       defaultLabel="Selecciona un dueño" 
+                       [style]="{'width':'80%','heigth': '40%'}"
+                       optionLabel="nombre" 
+                       optionValue="idUsuarioE"
+                       [(ngModel)]="editService.idDuenio" 
+                       [selectionLimit]="1"
+                       formControlName="dueno" 
+                       >
+         </p-multiSelect><br>
+         <label class="messageInformative">
+             Es el agente que supervisará el servicio y recibirá reportes
+         </label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-2">Asignación directa</label>
+      <div class="col-sm-10">
+        <p-multiSelect 
+                      [style]="{'width':'80%','heigth': '40%'}"
+                      [options]="listAsignacionDirecta"
+                      [(ngModel)]="editService.idsAsignacionDirecta" 
+                      defaultLabel="Seleccione asignación directa"
+                      formControlName="asignacionDirecta"
+        optionLabel="nombre" optionValue="idUsuarioE"></p-multiSelect>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-2" >Asignación reporte</label>
+      <div class="col-sm-10">
+        <p-multiSelect 
+                      [style]="{'width':'80%','heigth': '40%'}"
+                      [options]="listAsignacionReporte"
+                      [(ngModel)]="editService.idsAsignacionReporte" 
+                      defaultLabel="Seleccione asignación reporte"
+                      optionLabel="nombre" 
+                      optionValue="idUsuarioE"
+                      formControlName="asignacionReporte">
+        </p-multiSelect>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-sm-2 ">Estatus </label>
+   
+          <div class="col-sm-10">
+            <div class="form-check form-check-inline">
+                    <p-radioButton
+                      type="radio"
+                      name="estatus" 
+                      value="true"
+                      [(ngModel)]="editService.estatus"
+                      formControlName="estatus"
+                  >
+                  </p-radioButton>
+                  <label class="form-check-label  ml-2"> Activo</label>
+            </div>
+             
+            <div class="form-check form-check-inline">
+              <p-radioButton
+                     type="radio" 
+                     name="estatus" 
+                     value="false" 
+                     [(ngModel)]="editService.estatus"
+                     formControlName="estatus"
+                >
+              </p-radioButton>
+              <label class="form-check-label  ml-2"> Desarrollo</label>
+            </div>
+  
+            <div class="form-check form-check-inline">
+              <p-radioButton
+                     type="radio"
+                     name="estatus"
+                     value="false" 
+                     [(ngModel)]="editService.estatus"
+                     formControlName="estatus"
+               >
+              </p-radioButton>   
+                   <label class="form-check-label  ml-2"> Retirado</label>
+            </div>
+          </div>
+    </div>
+
+  
+    <div class="separator"></div>
+
+    <div class="row">
+      <div class="col-12">
+        <label style="font-weight: 450;" class="mt-2"><strong>Horarios</strong></label>
+      </div>
+     </div>
+
+     <div class="form-group row">
+      <label  class="col-sm-2 " style="font-weight: 450;">Dias </label>
+      <div class="col-sm-10">
+        <p-selectButton [options]="diasOptions" 
+                        [multiple]="true" 
+                        optionLabel="name"
+                        optionValue="value"
+                        [(ngModel)]="editService.dias"
+                        formControlName="dias"
+                        [style]="{'width':'80%','heigth': '40%'}"
+                        >
+        </p-selectButton>
+       </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-sm-2" >Horario Inicial </label>
+  
+      <div class="col-sm-10">
+        <input type="number" style="width: 10%;" class="ml-2" [(ngModel)]="editService.horaInicial"   formControlName="horaInicial" min="0" max="24">
+        <label class="ml-2">:</label>
+        <input type="number" style="width: 10%;" class="ml-2" [(ngModel)]="editService.minutoInicial" formControlName="minutoInicial" min="0" max="59">
+  
+        <label  class="ml-2">Horario Final </label>
+  
+        <input type="number" style="width: 10%;" class="ml-2" [(ngModel)]="editService.horaFinal"   formControlName="horaFinal" min="0" max="24" >
+        <label class="ml-2">:</label>
+        <input type="number" style="width: 10%;" class="ml-2" [(ngModel)]="editService.minutoFinal"  formControlName="minutoFinal" min="0" max="59">
+  
+        <label class="ml-2">Horario 24 hrs.</label>
+        <p-inputSwitch [(ngModel)]="editService.horario24" formControlName="hora24"></p-inputSwitch>
+    </div>
+  
+    </div>
+  
+    <div class="separator"></div>
+  
+    <div class="form-group row mt-2">
+      <label  class="col-sm-2 " style="font-weight: 450;">Mantenimiento </label>
+      <div class="col-sm-10">
+           <input type="hidden"  formControlName="mantenimiento">
+       </div>
+    </div>
+
+    <div class="form-group row mt-2">
+      <label  class="col-sm-2">Disponibilidad </label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control ml-2" style="width: 10%;" class="ml-2" formControlName="disponibilidadHora" max="24" min="0">
+        <label class="ml-2">.</label>
+        <input type="number"  class="form-control" style="width: 10%;" class="ml-2"     formControlName="disponibilidadMinuto" >
+        <label class="ml-2">%</label>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label  class="col-sm-2 ">Tipo de Servicio </label>
+      <div class="col-sm-10">
+        <div class="form-check form-check-inline">
+            <p-radioButton
+                 type="radio" 
+                 name="tipoServicio" 
+                 value="1"
+                [(ngModel)]="editService.tipoServicio"
+                formControlName="tipoServicio"
+                >
+            </p-radioButton>
+            
+          <label class="form-check-label ml-2">De cara al usuario</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <p-radioButton
+                
+                  type="radio" 
+                  name="tipoServicio"
+                  value="2" 
+                  [(ngModel)]="editService.tipoServicio"
+                  formControlName="tipoServicio">
+          </p-radioButton>
+  
+          <label class="form-check-label  ml-2">De soporte interno</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+   
+  <div class="form-group row mt-3">
+    <label  class="col-sm-2" >Objetivos</label>
+    <div class="col-sm-10">
+       <textarea  
+                 id="float-input" 
+                 pInputTextarea 
+                 rows="4" 
+                 [style]="{'width':'80%'}"
+                 pInputTextarea  
+                 [(ngModel)]="editService.objetivos"
+                 formControlName="objetivos"
+                 ></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label  class="col-sm-2 ">Caracteristicas </label>
+    <div class="col-sm-10">
+       <textarea 
+                id="float-input" 
+                rows="4" 
+                style="width: 100%;"
+                pInputTextarea 
+                [style]="{'width':'80%'}"
+                [(ngModel)]="editService.caracteristicas"
+                formControlName="caracteristicas"
+                ></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label  class="col-sm-2 ">Procedimientos </label>
+    <div class="col-sm-10">
+       <textarea  
+                 id="float-input"
+                 rows="4" 
+                 [style]="{'width':'80%'}" 
+                 pInputTextarea 
+                 [(ngModel)]="editService.procedimientos"
+                 formControlName="procedimientos"
+        ></textarea>
+    </div>
+  </div>
+
+
+ <div class="form-group row">
+    <label  class="col-sm-2 ">Alcances </label>
+    <div class="col-sm-10">
+       <textarea 
+                id="float-input" 
+                rows="4" 
+                [style]="{'width':'80%'}"
+                pInputTextarea  
+                [(ngModel)]="editService.alcances"
+                formControlName="alcances"
+                >
+        </textarea>
+    </div>
+  </div>
+  
+
+
+
+    <div class="separator"></div>
+    
+    <div class="text-center mt-2">
+      <button pButton label="Cancelar" type="button"  (click)="cancel()" iconPos="right" class="p-button-sm buttonCancel"></button>
+      <button pButton label="Guardar Servicio"   iconPos="right"  type="submit" class="p-button-sm buttonNext  ml-2"></button>
+    </div>
+
+    </form>
+    
+  </p-card>
+  
+  

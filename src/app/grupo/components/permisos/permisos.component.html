@@ -1,0 +1,178 @@
+<div class="row">
+  <div class="row">
+    <div class="col-12">
+      <h5>Barda</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="activarBardaPublica"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Activar barda pública.</label
+        >
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="activarBardaGrupo"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Activar barda para el grupo.</label
+        >
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <h6>¿Quienes pueden publicar en la barda?</h6>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="allCanPost"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Todos pueden publicar.</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!allCanPost">
+    <div class="row">
+      <div class="col-12">
+        <h6>Publicaciones por ubicación.</h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <p-multiSelect [options]="regiones" [(ngModel)]="selectedRegion" 
+          optionValue="id" optionLabel="nombre"
+        ></p-multiSelect>
+        
+      </div>
+
+      <div class="col-12 col-md-6">
+        <p-multiSelect [options]="localidades1" [(ngModel)]="selectedLocalidad1" 
+          optionValue="id" optionLabel="nombre"
+        ></p-multiSelect>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <p-multiSelect [options]="localidades2" [(ngModel)]="selectedLocalidad2" 
+          optionValue="id" optionLabel="nombre"
+        ></p-multiSelect>
+      </div>
+      <div class="col-12 col-md-6">
+        <h6>Usuarios publicadores.</h6>
+        <p-multiSelect [options]="usuariosPublicadores" [(ngModel)]="selectedUsuariosPublicadores" 
+          optionValue="id" optionLabel="nombre"
+        ></p-multiSelect>
+      </div>
+    </div>
+
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h5>
+        <small>Directorio de usuarios</small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="directorioUsuarios"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Activar chat</label
+        >
+      </div>
+      <div class="row" *ngIf="directorioUsuarios">
+        <div class="col-12">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              name="directorioUsuariosTodos"
+              [(ngModel)]="directorioUsuariosTodos"
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckDefault"
+              >Todos</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              [(ngModel)]="directorioUsuariosUsuariosAgentes"
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckDefault"
+              >Usuarios -Agentes</label
+            >
+          </div>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              [(ngModel)]="directorioUsuariosAgentesAgentes"
+            />
+            <label
+              class="form-check-label"
+              for="flexSwitchCheckDefault"
+              >Agentes-Agentes</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <h5>
+        <small>Chat</small>
+      </h5>
+      <div class="p-field-radiobutton">
+        <p-radioButton name="chat" value="1" [(ngModel)]="chat" inputId="todos"></p-radioButton>
+        <label for="todos">Todos</label>
+      </div>
+
+      <div class="p-field-radiobutton">
+        <p-radioButton name="chat" value="2" [(ngModel)]="chat" inputId="agentes"></p-radioButton>
+        <label for="agentes">Agentes</label>
+      </div>
+      
+      
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" style="margin-top: 30px" (click)="guardarCambios()">
+        Guardar cambios
+      </button>
+    </div>
+  </div>
+</div>

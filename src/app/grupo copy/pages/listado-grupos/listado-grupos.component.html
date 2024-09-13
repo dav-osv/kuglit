@@ -1,0 +1,54 @@
+<div class="row">
+  <!-- <div class="row">
+    <div class="col">
+      Button trigger modal
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#modalNuevoGrupoSoporte"
+      >
+        Nuevo grupo de soporte
+      </button>
+    </div>
+  </div> -->
+  <br />
+  <br />
+  <div class="col">
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">#</th>
+          <th scope="col">Grupo de soporte</th>
+          <th scope="col">Administrador del grupo</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="text-center"
+          *ngFor="let grupo of listGrupos; index as i"
+          (click)="selectGrupo(grupo.id)"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>{{ grupo.nombre }}</td>
+          <td>{{ grupo.administradores }}</td>
+          <td>
+            <mat-icon
+              class="modalDelete me-3"
+              data-bs-toggle="modal"
+              data-bs-target="#modalBorrarGrupo"
+              >delete</mat-icon
+            >
+            <mat-icon
+              class="modalEdit"
+              data-bs-toggle="modal"
+              data-bs-target="#modalEditarGrupo"
+              >edit</mat-icon
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

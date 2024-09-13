@@ -1,0 +1,8 @@
+{  
+    "/servicios/*": {
+         "target": "https://dev-service-desk.klugit.com/klugit-service-desk",
+         "secure": false,
+         "logLevel": "debug",
+         "changeOrigin": true
+    }
+}

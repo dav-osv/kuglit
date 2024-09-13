@@ -1,0 +1,249 @@
+<div class="row">
+  <div class="row">
+    <div class="col-12">
+      <h5>Usuario que recibira notificación de primera respuesta.</h5>
+      <h6>
+        Los usuarios que se agreguen al listado, les llegará notifición por
+        correo electrónico.
+      </h6>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <small>
+          <label for="selecUsuarios1"
+            >Seleccionar usuarios existentes en el sistema:</label
+          >
+        </small>
+        <p-multiSelect *ngIf="visibleCorreos" [options]="usuariosGrupo" [(ngModel)]="usuariosCorreoSelected" defaultLabel="Selecciona un usuario" 
+          optionLabel="nombre" optionValue="idUsuarioE" selectedItemsLabel="{0} usuarios selecionados" (onChange)="onChangeSelectUsuariosCorreo()"
+        ></p-multiSelect>
+
+      </div>
+      <div class="col-12 col-md-6 text-center align-content-center mt-3 mb-3">
+        <p>
+          <small
+            >Llegará una notificación de primera respuesta SLA al correo
+            electronico agregado.</small
+          >
+        </p>
+        <!-- Button trigger modal -->
+        <button class="btn btn-outline-primary" (click)="modalCorreosSLA = true">
+          Agregar correo
+        </button>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Usuario</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuariosCorreoDisplay; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{usuario.nombre}}</td>
+              <i class="pi pi-trash" (click)="onDeleteUsuarioCorreo(i, usuario.idUsuarioE)"></i>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12 col-md-6">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let correo of correosSLA; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{correo.nombre}}</td>
+              <td>{{correo.correo}}</td>
+              <td>
+                <i class="pi pi-trash" (click)="onDeleteCorreoSLA(i)"></i>
+                <i class="pi pi-pencil" (click)="onUpdateCorreoSLA(i)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h5>
+        <small> Usuarios que no calificarán solicitudes. </small>
+      </h5>
+      <p>
+        <small
+          >Los usuarios que se agreguen al listado, son usuario que no les
+          pedirá que califiquen para poder seguir levantando solicitudes e
+          incidentes.</small
+        >
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <small>
+          <label for="selecUsuarios2"
+            >Seleccionar usuarios existentes en el sistema:</label
+          >
+        </small>
+        <p-multiSelect *ngIf="visibleCalificaciones" [options]="usuariosGrupo" [(ngModel)]="usuariosCalificacionSelected" defaultLabel="Selecciona un usuario" 
+          optionLabel="nombre" optionValue="idUsuarioE" selectedItemsLabel="{0} usuarios selecionados" (onChange)="onChangeSelectUsuariosCalificacion()" 
+        ></p-multiSelect>
+      </div>
+      <div class="col-12 col-md-6">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Seleccionados</th>
+
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuariosCalificacionDisplay; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{usuario.nombre}}</td>
+              <i class="pi pi-trash" (click)="onDeleteUsuarioCalificacion(i, usuario.idUsuarioE)"></i>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h5>
+        <small> Privacidad de usuarios. </small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          ([ngModel])="configuracionesGrupo.mostrarCorreo"
+          (change)="onChangeConfiguracion()"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Mostrar el correo en detalle del perfil de los usuarios.</label
+        >
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <h5>
+        <small> Especialistas de cambio y problemas. </small>
+      </h5>
+      <p>
+        <small>
+          En el módulo de Cambios y Problemas mostrar en los Especialistas
+          'Todos los usuarios' o 'Agentes y Administradores'.
+        </small>
+      </p>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="configuracionesGrupo.mostarTodos"
+          (change)="onChangeConfiguracion()"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Mostrar todos los usuarios.</label
+        >
+      </div>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <h5>
+        <small> Seguimientos agregador por el sistema.</small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="configuracionesGrupo.mostrarSeguimientoSistema"
+          (change)="onChangeConfiguracion()"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Mostrar seguimientos agregados por el sistema.</label
+        >
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <h5>
+        <small>
+          Pedir justificación de cambio de estatus de solicitud/incidentes.
+        </small>
+      </h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          [(ngModel)]="configuracionesGrupo.razonCambioEstatusSolicitudes"
+          (change)="onChangeConfiguracion()"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Pedir justificación de cambio de estatus.</label
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------------------------------------------------------------------------------- -->
+
+<!-- MODAL AGREGAR CORREO -->
+
+<p-dialog header="NUevo correo SLA" [(visible)]="modalCorreosSLA" [modal]="true" [style]="{width: '50vw'}">
+
+  <div class="modal-body">
+    <label for="newName">Nombre:</label>
+    <input class="form-control" type="text" id="newName" [(ngModel)]="nombre" />
+    <label for="newMail">Correo electrónico:</label>
+    <input class="form-control" type="email" id="newMail" [(ngModel)]="correo" />
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="modalCorreosSLA = false"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="onAgregarCorreoSLA()"
+    >
+      Agregar
+    </button>
+  </div>
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

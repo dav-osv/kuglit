@@ -1,0 +1,57 @@
+
+<div class="row mt-2">
+      <div class="col-md-12">
+             <label> Configura un formulario específico para el servicio, ayudará a resolver las solicitudes de manera más rápida y precisa.</label>
+      </div>
+</div>
+<br>
+
+<form [formGroup]="validationService" (ngSubmit)="updateSection()">
+  
+     <div class="form-group col-md-12">
+          <label class="fontLabel" >Titulo de la sección <label style="color:#dc3545;">*</label></label>
+  
+          <input type="text"
+                 pInputText 
+                 [(ngModel)]="editSection.nombre" 
+                 formControlName="nombre"
+                 class="inputText form-control"
+                 [class.is-invalid]="invalidSeccion" 
+          >
+         <small *ngIf="invalidSeccion" class="text-danger"><br>El nombre de la sección es obligatorio</small>
+      </div>
+  
+      <div class="form-group col-md-3">
+         <label class="fontLabel">Estatus</label><br>
+         <p-inputSwitch  
+                        formControlName="estatus" 
+                        [(ngModel)]="editSection.verUsuario"
+                         [style]="{'heigth': '80%'}" 
+          >
+        </p-inputSwitch> 
+       </div>
+     
+
+
+      <!-- <app-listado-pregunta [section]="section"> </app-listado-pregunta> -->
+      <label> Agrega las preguntas en el orden que desees que aparezcan.</label><br>
+
+      
+       
+
+       <div *ngIf ="visibleQuestion">
+               <app-nueva-pregunta [editSection]="editSection"  (onAddQuestion)="addQuestion($event)"></app-nueva-pregunta>
+       </div> 
+
+       <div *ngIf ="visibleButtonQuestion">
+              <button pButton label="+ Agregar pregunta" type="button"  (click)="openComponentQuestion()" class="p-button-sm"></button>
+       </div>
+
+    
+      <div class="separator mt-4"></div>
+      <div class="text-center mt-2">
+            <button pButton label="Cancelar" type="button"  (click)="cancel()" iconPos="right" class="p-button-sm buttonCancel"></button>
+            <button pButton label="Guardar Seccion"  iconPos="right"  type="submit" class="p-button-sm buttonNext  ml-2"></button>
+      </div>
+   
+  </form>
